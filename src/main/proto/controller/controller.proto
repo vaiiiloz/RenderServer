@@ -1,0 +1,21 @@
+syntax = "proto3";
+package controller;
+import "common/common.proto";
+option java_package = "com.proto.controller";
+option java_multiple_files = true;
+
+message ControllerRequest{
+  string userid = 1;
+  common.TimeRequest timeRequest = 2;
+  string deviceId = 3;
+  int32 width = 4;
+  int32 height = 5;
+}
+
+message ControllerResponse{
+  bytes heatmap = 1;
+}
+
+service ControllerService{
+  rpc getHeatmap(ControllerRequest) returns (ControllerResponse) {};
+}

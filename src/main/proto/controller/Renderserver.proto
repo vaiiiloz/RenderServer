@@ -1,0 +1,24 @@
+syntax = "proto3";
+package controller;
+import "common/common.proto";
+option java_package = "com.proto.render_server";
+option java_multiple_files = true;
+
+message ServerRequest{
+  int32 userid = 1;
+  common.TimeRequest timeRequest = 2;
+  string deviceId = 3;
+  int32 width = 4;
+  int32 height = 5;
+}
+
+message ServerResponse{
+  bytes heatmap = 1;
+  int32 userid = 2;
+}
+
+service RenderService{
+  rpc getHeatmap(ServerRequest) returns (ServerResponse) {};
+
+  rpc getHeatmapStream(stream ServerRequest) returns (stream ServerResponse){};
+}

@@ -1,0 +1,25 @@
+syntax = "proto3";
+package common;
+option java_package = "com.proto.common";
+option java_multiple_files = true;
+
+message Time{
+  string format = 1;
+  string time = 2;
+
+}
+
+message Box{
+  int32 x = 1;
+  int32 y = 2;
+  int32 w = 3;
+  int32 h = 4;
+  float score = 5;
+}
+
+
+message TimeRequest{
+  Time start = 1;
+  Time end = 2;
+}
+

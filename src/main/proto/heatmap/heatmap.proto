@@ -1,0 +1,19 @@
+syntax = "proto3";
+package heatmap;
+import "common/common.proto";
+option java_package = "com.proto.heatmap";
+option java_multiple_files = true;
+
+message heatmapRequest {
+  repeated common.Box boxes = 1;
+  int32 width = 2;
+  int32 height = 3;
+}
+
+message heatmapResponse {
+  bytes heatmap = 1;
+}
+
+service HeatmapService {
+  rpc getHeatmap(heatmapRequest) returns (heatmapResponse){};
+}
