@@ -34,11 +34,13 @@ public class mongoServiceImpl extends MongoServiceGrpc.MongoServiceImplBase {
         try{
 
             //get start end
-            Date start = convertTime(request.getTimeRequest().getStart().getTime(),
-                    request.getTimeRequest().getStart().getFormat());
-            Date end = convertTime(request.getTimeRequest().getEnd().getTime(),
-                    request.getTimeRequest().getEnd().getFormat());
+//            Date start = convertTime(request.getTimeRequest().getStart().getTime(),
+//                    request.getTimeRequest().getStart().getFormat());
+//            Date end = convertTime(request.getTimeRequest().getEnd().getTime(),
+//                    request.getTimeRequest().getEnd().getFormat());
 
+            long start = request.getTimeRequest().getStart();
+            long end = request.getTimeRequest().getEnd();
 
             //find boxes in mongodb
             List<Box> boxes = mongoHandler.findBoxes(request.getDeviceId(), start, end);
@@ -62,7 +64,7 @@ public class mongoServiceImpl extends MongoServiceGrpc.MongoServiceImplBase {
 
             //complete service
             responseObserver.onCompleted();
-        }catch(ParseException e){
+        }catch(Exception e){
             System.out.println("Parse Exception");
             e.printStackTrace();
         }

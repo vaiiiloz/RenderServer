@@ -18,4 +18,10 @@ public interface ServerResponseOrBuilder extends
    * @return The userid.
    */
   int getUserid();
+
+  /**
+   * <code>int32 counting = 3;</code>
+   * @return The counting.
+   */
+  int getCounting();
 }

@@ -67,6 +67,32 @@ public  final class ServerResponse extends
     userid_ = 0;
   }
 
+  public static final int COUNTING_FIELD_NUMBER = 3;
+  private int counting_;
+  /**
+   * <code>int32 counting = 3;</code>
+   * @return The counting.
+   */
+  @java.lang.Override
+  public int getCounting() {
+    return counting_;
+  }
+  /**
+   * <code>int32 counting = 3;</code>
+   * @param value The counting to set.
+   */
+  private void setCounting(int value) {
+    
+    counting_ = value;
+  }
+  /**
+   * <code>int32 counting = 3;</code>
+   */
+  private void clearCounting() {
+    
+    counting_ = 0;
+  }
+
   public static com.proto.render_server.ServerResponse parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -218,6 +244,34 @@ public  final class ServerResponse extends
       return this;
     }
 
+    /**
+     * <code>int32 counting = 3;</code>
+     * @return The counting.
+     */
+    @java.lang.Override
+    public int getCounting() {
+      return instance.getCounting();
+    }
+    /**
+     * <code>int32 counting = 3;</code>
+     * @param value The counting to set.
+     * @return This builder for chaining.
+     */
+    public Builder setCounting(int value) {
+      copyOnWrite();
+      instance.setCounting(value);
+      return this;
+    }
+    /**
+     * <code>int32 counting = 3;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearCounting() {
+      copyOnWrite();
+      instance.clearCounting();
+      return this;
+    }
+
     // @@protoc_insertion_point(builder_scope:controller.ServerResponse)
   }
   @java.lang.Override
@@ -236,10 +290,11 @@ public  final class ServerResponse extends
           java.lang.Object[] objects = new java.lang.Object[] {
             "heatmap_",
             "userid_",
+            "counting_",
           };
           java.lang.String info =
-              "\u0000\u0002\u0000\u0000\u0001\u0002\u0002\u0000\u0000\u0000\u0001\n\u0002\u0004" +
-              "";
+              "\u0000\u0003\u0000\u0000\u0001\u0003\u0003\u0000\u0000\u0000\u0001\n\u0002\u0004" +
+              "\u0003\u0004";
           return newMessageInfo(DEFAULT_INSTANCE, info, objects);
       }
       // fall through

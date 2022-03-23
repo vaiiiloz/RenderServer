@@ -8,13 +8,12 @@ message ServerRequest{
   int32 userid = 1;
   common.TimeRequest timeRequest = 2;
   string deviceId = 3;
-  int32 width = 4;
-  int32 height = 5;
 }
 
 message ServerResponse{
   bytes heatmap = 1;
   int32 userid = 2;
+  int32 counting = 3;
 }
 
 service RenderService{

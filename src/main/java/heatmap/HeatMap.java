@@ -24,24 +24,18 @@ public class HeatMap {
     private static final String SPECTRUMPIC = "colors.png";
     private HashMap<Integer, List<Polygon>> polygonMap;
     private int maxOccurance = 1;
-    private int maxXValue;
-    private int maxYValue;
+    private BufferedImage background;
     AppfileConfig appfileConfig = SpringContext.context.getBean("appfileConfig", AppfileConfig.class);
 
-    public HeatMap(int width, int height) {
-        this.maxXValue = width;
-        this.maxYValue = height;
-
+    public HeatMap(BufferedImage background) {
+        this.background = background;
     }
 
 
     private HashMap<Integer, List<Box>> initMap(final List<Box> points) {
 
-
         HashMap<Integer, List<Box>> map = new HashMap<Integer, List<Box>>();
 
-
-        final int pointSize = points.size();
         points.forEach(point -> {
 
             final int hash = getkey(point);
@@ -62,10 +56,10 @@ public class HeatMap {
     }
 
     public BufferedImage createHeatMap(final float multiplier, List<Box> points) {
-
+//        System.out.println(background.getWidth()+" "+ background.getHeight());
         HashMap<Integer, List<Box>> map = initMap(points);
 
-        BufferedImage heatMap = new BufferedImage(maxXValue, maxYValue, 6);
+        BufferedImage heatMap = new BufferedImage(background.getWidth(), background.getHeight(), 6);
         paintInColor(heatMap, Color.white);
 //        paintInColor(heatMap,new Color(255,255,255,200));
 
@@ -84,6 +78,7 @@ public class HeatMap {
             Box currentPoint = currentPoints.get(0);
 
             addImage(heatMap, null, opaque, currentPoint);
+//            addBox(heatMap, opaque, currentPoint);
 
         }
 
@@ -92,10 +87,10 @@ public class HeatMap {
         remap(heatMap);
 
 
-//        final BufferedImage output = lvlMap;
-//        addImage(output, heatMap, 0.4f);
+        final BufferedImage output = background;
+        addImage(output, heatMap, 0.4f, null);
 
-        return heatMap;
+        return output;
     }
 
     private void remap(final BufferedImage heatMapBW) {
@@ -165,7 +160,7 @@ public class HeatMap {
         g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, opaque));
         if (box != null) {
 
-            int radius = Math.max(box.getW() / 2, box.getH() / 2);
+            int radius = Math.max(box.getW()/2, box.getH()/2) ;
             int x = box.getX();
             int y = box.getY();
 
@@ -174,14 +169,26 @@ public class HeatMap {
             g2d.setPaint(new RadialGradientPaint(new Point.Double(x, y), radius, new float[]{0f, 1.0f},
                     new Color[]{new Color(0, 0, 0, color), new Color(0, 0, 0, 0)}));
 //            g2d.setPaint(new Color(0,0,0,255));
-            g2d.fillArc(x - radius, y - radius, 2 * radius, 2 * radius, 0, 360);
+            g2d.fillArc(x -radius, y -radius, 2 * radius, 2 * radius, 0, 360);
 //            System.out.println(x+" "+y);
 
         } else {
             g2d.drawImage(buff2, 0, 0, null);
             g2d.dispose();
         }
+    }
 
+    private void addBox(BufferedImage buff1, final float opaque, Box box){
+
+        Short color = (short) (255 * opaque);
+        Color c2 = new Color(0, 0, 0, color);
+        Graphics2D g2d = buff1.createGraphics();
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+//        g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER ,opaque));
+        g2d.setColor(c2);
+//        g2d.setPaint(gradient);
+        g2d.drawRect(box.getX(), box.getY(), box.getW(), box.getH());
+        g2d.dispose();
 
     }
 

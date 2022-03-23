@@ -8,24 +8,14 @@ public interface TimeRequestOrBuilder extends
     com.google.protobuf.MessageLiteOrBuilder {
 
   /**
-   * <code>.common.Time start = 1;</code>
-   * @return Whether the start field is set.
-   */
-  boolean hasStart();
-  /**
-   * <code>.common.Time start = 1;</code>
+   * <code>int64 start = 1;</code>
    * @return The start.
    */
-  com.proto.common.Time getStart();
+  long getStart();
 
   /**
-   * <code>.common.Time end = 2;</code>
-   * @return Whether the end field is set.
-   */
-  boolean hasEnd();
-  /**
-   * <code>.common.Time end = 2;</code>
+   * <code>int64 end = 2;</code>
    * @return The end.
    */
-  com.proto.common.Time getEnd();
+  long getEnd();
 }

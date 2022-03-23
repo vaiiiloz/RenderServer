@@ -24,7 +24,7 @@ public class heatmapServiceImpl extends HeatmapServiceGrpc.HeatmapServiceImplBas
             List<Box> boxes = request.getBoxesList();
 
             //create heatmap
-            BufferedImage heatmap = Renderer.renderHeatMap(request.getWidth(), request.getHeight(), boxes);
+            BufferedImage heatmap = Renderer.renderHeatMap(null, boxes);
 
 
             //convert bufferedImage to bytearray

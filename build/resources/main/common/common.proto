@@ -19,7 +19,7 @@ message Box{
 
 
 message TimeRequest{
-  Time start = 1;
-  Time end = 2;
+  int64 start = 1;
+  int64 end = 2;
 }
 

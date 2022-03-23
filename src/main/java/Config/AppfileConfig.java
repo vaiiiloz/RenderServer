@@ -38,12 +38,27 @@ public class AppfileConfig {
     @Value("${mongo.database}")
     public String mongoDatabase;
 
-    @Value("${mongo.collection}")
-    public String mongoCollection;
+    @Value("${mongo.box_collection}")
+    public String boxCollection;
 
     @Value("${model.type}")
     public String modelType;
 
     @Value("${multiplier}")
     public float multiplier;
+
+    @Value("${cephAccessKey}")
+    public String cephAccessKey;
+
+    @Value("${cephPrivateKey}")
+    public String cephPrivateKey;
+
+    @Value("${cephHostname}")
+    public String cephHostname;
+
+    @Value("${mongo.background_collection}")
+    public String backgroundCollection;
+
+    @Value("${mongo.track_collection}")
+    public String trackCollection;
 }

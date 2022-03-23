@@ -1,5 +1,6 @@
 package Controller;
 
+import Ceph.CephHandler;
 import com.google.protobuf.ByteString;
 import com.proto.common.Box;
 
@@ -27,11 +28,12 @@ import java.util.TimeZone;
 public class RenderServerImpl extends RenderServiceGrpc.RenderServiceImplBase {
 
 
-
     private MongoHandler mongoHandler;
+    private CephHandler cephHandler;
 
     public RenderServerImpl() {
         mongoHandler = new MongoHandler();
+        cephHandler = new CephHandler();
     }
 
 
@@ -41,19 +43,29 @@ public class RenderServerImpl extends RenderServiceGrpc.RenderServiceImplBase {
         return df.parse(time);
     }
 
-    private ByteString getResponse(ServerRequest request){
+    private ServerResponse getResponse(ServerRequest request) {
         try {
+            //create response builder
+            ServerResponse.Builder serverResponseBuilder = ServerResponse.newBuilder();
 
             //get start end
-            Date start = convertTime(request.getTimeRequest().getStart().getTime(),
-                    request.getTimeRequest().getStart().getFormat());
-            Date end = convertTime(request.getTimeRequest().getEnd().getTime(),
-                    request.getTimeRequest().getEnd().getFormat());
+//            Date start = convertTime(request.getTimeRequest().getStart().getTime(),
+//                    request.getTimeRequest().getStart().getFormat());
+//            Date end = convertTime(request.getTimeRequest().getEnd().getTime(),
+//                    request.getTimeRequest().getEnd().getFormat());
 
+            long start = request.getTimeRequest().getStart();
+            long end = request.getTimeRequest().getEnd();
+
+            //Create Heatmap
             //find boxes in mongodb
             List<Box> boxes = mongoHandler.findBoxes(request.getDeviceId(), start, end);
+            //find backgroundPath in mongodb
+            String[] bucket_path = mongoHandler.findBackgroundPath(request.getDeviceId(), start, end);
+            //get background from ceph
+            BufferedImage background = cephHandler.getBackground(bucket_path[0], bucket_path[1]);
             //render heatmap
-            BufferedImage heatmap = Renderer.renderHeatMap(request.getWidth(), request.getHeight(), boxes);
+            BufferedImage heatmap = Renderer.renderHeatMap(background, boxes);
             //convert heatmap
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             ImageIO.write(heatmap, "png", baos);
@@ -61,12 +73,18 @@ public class RenderServerImpl extends RenderServiceGrpc.RenderServiceImplBase {
             byte[] bytes = baos.toByteArray();
             baos.close();
             ByteBuffer buf = ByteBuffer.wrap(bytes);
-
             ByteString byteString = ByteString.copyFrom(buf);
-            return byteString;
-        } catch (ParseException e) {
-            e.printStackTrace();
-            return null;
+            //add heatmap to builder
+            serverResponseBuilder.setHeatmap(byteString);
+
+            //Create counting
+            //find set of trackId in mongodb
+//            serverResponseBuilder.setCounting(mongoHandler.findTrackID(request.getDeviceId(), start, end).size());
+
+            //add userId to builder
+            serverResponseBuilder.setUserid(request.getUserid());
+
+            return serverResponseBuilder.build();
         } catch (IOException e) {
             e.printStackTrace();
             return null;
@@ -78,7 +96,7 @@ public class RenderServerImpl extends RenderServiceGrpc.RenderServiceImplBase {
         StreamObserver<ServerRequest> streamObserver = new StreamObserver<ServerRequest>() {
             @Override
             public void onNext(ServerRequest value) {
-                responseObserver.onNext(ServerResponse.newBuilder().setHeatmap(getResponse(value)).setUserid(value.getUserid()).build());
+                responseObserver.onNext(getResponse(value));
             }
 
             @Override
@@ -96,7 +114,7 @@ public class RenderServerImpl extends RenderServiceGrpc.RenderServiceImplBase {
 
     @Override
     public void getHeatmap(ServerRequest request, StreamObserver<ServerResponse> responseObserver) {
-        responseObserver.onNext(ServerResponse.newBuilder().setHeatmap(getResponse(request)).setUserid(request.getUserid()).build());
+        responseObserver.onNext(getResponse(request));
         responseObserver.onCompleted();
     }
 

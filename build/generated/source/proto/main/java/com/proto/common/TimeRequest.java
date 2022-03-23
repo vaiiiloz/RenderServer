@@ -14,95 +14,55 @@ public  final class TimeRequest extends
   private TimeRequest() {
   }
   public static final int START_FIELD_NUMBER = 1;
-  private com.proto.common.Time start_;
+  private long start_;
   /**
-   * <code>.common.Time start = 1;</code>
+   * <code>int64 start = 1;</code>
+   * @return The start.
    */
   @java.lang.Override
-  public boolean hasStart() {
-    return start_ != null;
+  public long getStart() {
+    return start_;
   }
   /**
-   * <code>.common.Time start = 1;</code>
+   * <code>int64 start = 1;</code>
+   * @param value The start to set.
    */
-  @java.lang.Override
-  public com.proto.common.Time getStart() {
-    return start_ == null ? com.proto.common.Time.getDefaultInstance() : start_;
+  private void setStart(long value) {
+    
+    start_ = value;
   }
   /**
-   * <code>.common.Time start = 1;</code>
+   * <code>int64 start = 1;</code>
    */
-  private void setStart(com.proto.common.Time value) {
-    value.getClass();
-  start_ = value;
+  private void clearStart() {
     
-    }
-  /**
-   * <code>.common.Time start = 1;</code>
-   */
-  @java.lang.SuppressWarnings({"ReferenceEquality"})
-  private void mergeStart(com.proto.common.Time value) {
-    value.getClass();
-  if (start_ != null &&
-        start_ != com.proto.common.Time.getDefaultInstance()) {
-      start_ =
-        com.proto.common.Time.newBuilder(start_).mergeFrom(value).buildPartial();
-    } else {
-      start_ = value;
-    }
-    
-  }
-  /**
-   * <code>.common.Time start = 1;</code>
-   */
-  private void clearStart() {  start_ = null;
-    
+    start_ = 0L;
   }
 
   public static final int END_FIELD_NUMBER = 2;
-  private com.proto.common.Time end_;
+  private long end_;
   /**
-   * <code>.common.Time end = 2;</code>
+   * <code>int64 end = 2;</code>
+   * @return The end.
    */
   @java.lang.Override
-  public boolean hasEnd() {
-    return end_ != null;
+  public long getEnd() {
+    return end_;
   }
   /**
-   * <code>.common.Time end = 2;</code>
+   * <code>int64 end = 2;</code>
+   * @param value The end to set.
    */
-  @java.lang.Override
-  public com.proto.common.Time getEnd() {
-    return end_ == null ? com.proto.common.Time.getDefaultInstance() : end_;
+  private void setEnd(long value) {
+    
+    end_ = value;
   }
   /**
-   * <code>.common.Time end = 2;</code>
+   * <code>int64 end = 2;</code>
    */
-  private void setEnd(com.proto.common.Time value) {
-    value.getClass();
-  end_ = value;
+  private void clearEnd() {
     
-    }
-  /**
-   * <code>.common.Time end = 2;</code>
-   */
-  @java.lang.SuppressWarnings({"ReferenceEquality"})
-  private void mergeEnd(com.proto.common.Time value) {
-    value.getClass();
-  if (end_ != null &&
-        end_ != com.proto.common.Time.getDefaultInstance()) {
-      end_ =
-        com.proto.common.Time.newBuilder(end_).mergeFrom(value).buildPartial();
-    } else {
-      end_ = value;
-    }
-    
-  }
-  /**
-   * <code>.common.Time end = 2;</code>
-   */
-  private void clearEnd() {  end_ = null;
-    
+    end_ = 0L;
   }
 
   public static com.proto.common.TimeRequest parseFrom(
@@ -201,95 +161,57 @@ public  final class TimeRequest extends
 
 
     /**
-     * <code>.common.Time start = 1;</code>
+     * <code>int64 start = 1;</code>
+     * @return The start.
      */
     @java.lang.Override
-    public boolean hasStart() {
-      return instance.hasStart();
-    }
-    /**
-     * <code>.common.Time start = 1;</code>
-     */
-    @java.lang.Override
-    public com.proto.common.Time getStart() {
+    public long getStart() {
       return instance.getStart();
     }
     /**
-     * <code>.common.Time start = 1;</code>
+     * <code>int64 start = 1;</code>
+     * @param value The start to set.
+     * @return This builder for chaining.
      */
-    public Builder setStart(com.proto.common.Time value) {
+    public Builder setStart(long value) {
       copyOnWrite();
       instance.setStart(value);
       return this;
-      }
-    /**
-     * <code>.common.Time start = 1;</code>
-     */
-    public Builder setStart(
-        com.proto.common.Time.Builder builderForValue) {
-      copyOnWrite();
-      instance.setStart(builderForValue.build());
-      return this;
     }
     /**
-     * <code>.common.Time start = 1;</code>
+     * <code>int64 start = 1;</code>
+     * @return This builder for chaining.
      */
-    public Builder mergeStart(com.proto.common.Time value) {
+    public Builder clearStart() {
       copyOnWrite();
-      instance.mergeStart(value);
-      return this;
-    }
-    /**
-     * <code>.common.Time start = 1;</code>
-     */
-    public Builder clearStart() {  copyOnWrite();
       instance.clearStart();
       return this;
     }
 
     /**
-     * <code>.common.Time end = 2;</code>
+     * <code>int64 end = 2;</code>
+     * @return The end.
      */
     @java.lang.Override
-    public boolean hasEnd() {
-      return instance.hasEnd();
-    }
-    /**
-     * <code>.common.Time end = 2;</code>
-     */
-    @java.lang.Override
-    public com.proto.common.Time getEnd() {
+    public long getEnd() {
       return instance.getEnd();
     }
     /**
-     * <code>.common.Time end = 2;</code>
+     * <code>int64 end = 2;</code>
+     * @param value The end to set.
+     * @return This builder for chaining.
      */
-    public Builder setEnd(com.proto.common.Time value) {
+    public Builder setEnd(long value) {
       copyOnWrite();
       instance.setEnd(value);
       return this;
-      }
-    /**
-     * <code>.common.Time end = 2;</code>
-     */
-    public Builder setEnd(
-        com.proto.common.Time.Builder builderForValue) {
-      copyOnWrite();
-      instance.setEnd(builderForValue.build());
-      return this;
     }
     /**
-     * <code>.common.Time end = 2;</code>
+     * <code>int64 end = 2;</code>
+     * @return This builder for chaining.
      */
-    public Builder mergeEnd(com.proto.common.Time value) {
+    public Builder clearEnd() {
       copyOnWrite();
-      instance.mergeEnd(value);
-      return this;
-    }
-    /**
-     * <code>.common.Time end = 2;</code>
-     */
-    public Builder clearEnd() {  copyOnWrite();
       instance.clearEnd();
       return this;
     }
@@ -314,7 +236,8 @@ public  final class TimeRequest extends
             "end_",
           };
           java.lang.String info =
-              "\u0000\u0002\u0000\u0000\u0001\u0002\u0002\u0000\u0000\u0000\u0001\t\u0002\t";
+              "\u0000\u0002\u0000\u0000\u0001\u0002\u0002\u0000\u0000\u0000\u0001\u0002\u0002\u0002" +
+              "";
           return newMessageInfo(DEFAULT_INSTANCE, info, objects);
       }
       // fall through

@@ -35,16 +35,4 @@ public interface ServerRequestOrBuilder extends
    */
   com.google.protobuf.ByteString
       getDeviceIdBytes();
-
-  /**
-   * <code>int32 width = 4;</code>
-   * @return The width.
-   */
-  int getWidth();
-
-  /**
-   * <code>int32 height = 5;</code>
-   * @return The height.
-   */
-  int getHeight();
 }

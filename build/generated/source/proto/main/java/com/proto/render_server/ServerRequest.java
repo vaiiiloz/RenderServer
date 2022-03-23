@@ -133,58 +133,6 @@ public  final class ServerRequest extends
     
   }
 
-  public static final int WIDTH_FIELD_NUMBER = 4;
-  private int width_;
-  /**
-   * <code>int32 width = 4;</code>
-   * @return The width.
-   */
-  @java.lang.Override
-  public int getWidth() {
-    return width_;
-  }
-  /**
-   * <code>int32 width = 4;</code>
-   * @param value The width to set.
-   */
-  private void setWidth(int value) {
-    
-    width_ = value;
-  }
-  /**
-   * <code>int32 width = 4;</code>
-   */
-  private void clearWidth() {
-    
-    width_ = 0;
-  }
-
-  public static final int HEIGHT_FIELD_NUMBER = 5;
-  private int height_;
-  /**
-   * <code>int32 height = 5;</code>
-   * @return The height.
-   */
-  @java.lang.Override
-  public int getHeight() {
-    return height_;
-  }
-  /**
-   * <code>int32 height = 5;</code>
-   * @param value The height to set.
-   */
-  private void setHeight(int value) {
-    
-    height_ = value;
-  }
-  /**
-   * <code>int32 height = 5;</code>
-   */
-  private void clearHeight() {
-    
-    height_ = 0;
-  }
-
   public static com.proto.render_server.ServerRequest parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -404,62 +352,6 @@ public  final class ServerRequest extends
       return this;
     }
 
-    /**
-     * <code>int32 width = 4;</code>
-     * @return The width.
-     */
-    @java.lang.Override
-    public int getWidth() {
-      return instance.getWidth();
-    }
-    /**
-     * <code>int32 width = 4;</code>
-     * @param value The width to set.
-     * @return This builder for chaining.
-     */
-    public Builder setWidth(int value) {
-      copyOnWrite();
-      instance.setWidth(value);
-      return this;
-    }
-    /**
-     * <code>int32 width = 4;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearWidth() {
-      copyOnWrite();
-      instance.clearWidth();
-      return this;
-    }
-
-    /**
-     * <code>int32 height = 5;</code>
-     * @return The height.
-     */
-    @java.lang.Override
-    public int getHeight() {
-      return instance.getHeight();
-    }
-    /**
-     * <code>int32 height = 5;</code>
-     * @param value The height to set.
-     * @return This builder for chaining.
-     */
-    public Builder setHeight(int value) {
-      copyOnWrite();
-      instance.setHeight(value);
-      return this;
-    }
-    /**
-     * <code>int32 height = 5;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearHeight() {
-      copyOnWrite();
-      instance.clearHeight();
-      return this;
-    }
-
     // @@protoc_insertion_point(builder_scope:controller.ServerRequest)
   }
   @java.lang.Override
@@ -479,12 +371,10 @@ public  final class ServerRequest extends
             "userid_",
             "timeRequest_",
             "deviceId_",
-            "width_",
-            "height_",
           };
           java.lang.String info =
-              "\u0000\u0005\u0000\u0000\u0001\u0005\u0005\u0000\u0000\u0000\u0001\u0004\u0002\t" +
-              "\u0003\u0208\u0004\u0004\u0005\u0004";
+              "\u0000\u0003\u0000\u0000\u0001\u0003\u0003\u0000\u0000\u0000\u0001\u0004\u0002\t" +
+              "\u0003\u0208";
           return newMessageInfo(DEFAULT_INSTANCE, info, objects);
       }
       // fall through

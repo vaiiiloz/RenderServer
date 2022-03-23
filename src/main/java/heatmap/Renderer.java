@@ -13,10 +13,10 @@ public class Renderer {
     static AppfileConfig appfileConfig = SpringContext.context.getBean("appfileConfig", AppfileConfig.class);
 
 
-    public static BufferedImage renderHeatMap(int width, int height, List<Box> boxes) {
+    public static BufferedImage renderHeatMap(BufferedImage background, List<Box> boxes) {
         try {
 
-            HeatMap heatMap = new HeatMap(width, height);
+            HeatMap heatMap = new HeatMap(background);
 //            mat.release();
             return heatMap.createHeatMap(appfileConfig.multiplier, boxes);
         } catch (Exception e) {
